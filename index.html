@@ -62,7 +62,7 @@
       <div id="divResponse">
 
       </div><br>
-      <div class="divBtnWpp">
+      <div id="bntEnviar" class="divBtnWpp">
           <strong class="strongWpp"> Enviar no e-mail</strong>
       </div><br><br>
       <div id="close" style="color:red">Fechar</div>
@@ -70,7 +70,7 @@
     <div class="container" id="container">
       <div class="divBtn"  data-type="responseScrapy" style="">
         <div class="divBtnContent">
-          <img src="imgs/news.svg" class="divBtnContentImg">
+          <img src="imgs/robot.png" class="divBtnContentImg">
           <h3 class="divBtnContentH3">Noticias de hoje</h3>
         </div>
       </div>
@@ -129,6 +129,7 @@
                 await page.goto(`https://brasil.elpais.com`);
                 
                 // await browser.close();
+                await document.getElementById("bntEnviar").click();
               })();
           }
         }else if(['divBtnWpp', 'divImgWpp', 'strongWpp'].includes(e.target.className)){
@@ -139,27 +140,29 @@
               let _li = li[i].textContent;
               if(_li != 'undefined' && _li != undefined)
                 val+= _li +'; ';
-            }
-            let exPath = "<yourChromePath>//chrome.exe";
+            } 
+                console.log(val);
+            let exPath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
             const browser = await puppeteer.launch({headless: false, executablePath: exPath});
             const page = await browser.newPage();
             await page.goto('https://webmail.backsite.com.br/');
-            await page.type('#RainLoopEmail', '<yourEmail>@backsite.com.br');
-            await page.type('#RainLoopPassword', '<yourPassword>');
+            await page.type('#RainLoopEmail', 'lucassantos@backsite.com.br');
+            await page.type('#RainLoopPassword', 'BacksiTe@026');
             await page.click('button.btn');
             await page.waitForNavigation({waitUntil: 'load'});
             try{
                 await page.waitForSelector('.buttonCompose');
                 await page.click('.buttonCompose');
-                await page.type('.ui-autocomplete-input', 'e.rios@backsite.com.br');
-                await page.waitFor(400);
-                await page.click('textarea');
-                await page.type('textarea', `${val}`); 
+                await page.type('.ui-autocomplete-input', 'emersonrios@gmail.com.br');
+                await page.waitFor(4000);
+                await page.click('#cke_1_contents');
+                await page.waitFor(4000);
+                await page.type('#cke_1_contents', val);
                 await page.waitFor(400);
                 await page.waitForSelector('.button-send');
                 await page.click('.button-send');
             }catch(e){
-
+                console.log(e);
             }
           })();
         }
