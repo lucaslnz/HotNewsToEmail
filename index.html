@@ -26,12 +26,12 @@
         }
         
         .divBtnContent img {
-            max-width: 35%;
+            max-width: 100%;
         }
         
         .divBtn {
-            width: 20%;
-            padding: 3%;
+            width: 90px;
+            padding: 5px;
             border-radius: 10px;
             box-shadow: 0px 1px 4px #0000007a;
             color: #ffffff;
@@ -64,44 +64,31 @@
         .nameTitle {
             color: white;
             text-shadow: 0px 0px 4px #000000ed;
-            font-size: -webkit-xxx-large;
+            font-size: 25px;
         }
     </style>
 </head>
 
 <body>
-    <div class="panel" id="responseScrapy">
-        <h3>Manchetes de hoje:</h3>
-        <div id="divResponse">
-        </div>
-        <br>
-        <div id="bntEnviar" class="divBtnEmail">
-            <strong class="strongEmail"> Enviar no e-mail</strong>
-        </div>
-        <br>
-        <br>
-        <div id="closeManchetes" style="color:red">Fechar</div>
-    </div>
-
     <div>
         <p id="tituloRobert" class="nameTitle">Olá! Sou o Robert</p>
         <div class="container" id="container">
-            <div id="btnNoticias" class="divBtn" data-type="responseScrapy" style="">
+            <div id="btnNoticias" class="divBtn">
                 <div class="divBtnContent" id="contentNoticias">
                     <img src="imgs/robot.png" class="divBtnContentImg" id="imgNoticias">
-                    <h3 class="divBtnContentH3" id="h3Noticias">Notícias</h3>
+                    <p class="divBtnContentH3" id="pNoticias">Notícias</p>
                 </div>
             </div>
-            <div id="btnNotificacoes" class="divBtn" data-type="responseScrapy" style="">
+            <div id="btnNotificacoes" class="divBtn">
                 <div class="divBtnContent" id="contenNotificacoes">
                     <img src="imgs/robot.png" class="divBtnContentImg" id="imgNotificacoes">
-                    <h3 class="divBtnContentH3" id="h3Notificacoes">Notificações</h3>
+                    <p class="divBtnContentH3" id="pNotificacoes">Notificações</p>
                 </div>
             </div>
-            <div id="btnComunidade" class="divBtn" data-type="responseScrapy" style="">
+            <div id="btnComunidade" class="divBtn">
                 <div class="divBtnContent" id="contentComunidade">
                     <img src="imgs/robot.png" class="divBtnContentImg" id="imgComunidade">
-                    <h3 class="divBtnContentH3" id="h3Comunidade">Comunidade</h3>
+                    <p class="divBtnContentH3" id="pComunidade">Comunidade</p>
                 </div>
             </div>
         </div>
@@ -151,50 +138,17 @@
 
         }
         document.addEventListener('click', (e) => {
-            if (e.target.id == 'btnNoticias' || e.target.id == 'contentNoticias' || e.target.id == 'imgNoticias' || e.target.id == 'h3Noticias') {
-                if (e.target.parentNode.parentNode.getAttribute('data-type') == 'responseScrapy') {
-                    let _div = 'responseScrapy';
-                    document.getElementById(_div).style.display = 'flex';
-                    document.getElementById('container').style.display = 'none';
-                    document.getElementById('tituloRobert').style.display = 'none';
-                    document.getElementById('divResponse').innerHTML = '';
-                    handler.getScrapy();
-                    //nucleo Noticias
-                    getNoticias();
-                }
-            } else if (['divBtnEmail', 'strongEmail'].includes(e.target.className)) {
-                //nucleo Noticias
-                enviaNoticias();
-            } else if (e.target.id == 'btnNotificacoes' || e.target.id == 'contentNotificacoes' || e.target.id == 'imgNotificacoes' || e.target.id == 'h3Notificacoes') {
+            if (e.target.id == 'btnNoticias' || e.target.id == 'contentNoticias' || e.target.id == 'imgNoticias' || e.target.id == 'pNoticias') {
+                getNoticias();
+            } else if (e.target.id == 'btnNotificacoes' || e.target.id == 'contentNotificacoes' || e.target.id == 'imgNotificacoes' || e.target.id == 'pNotificacoes') {
                 //nucleo Notificacoes
                 execNotificacoes();
 
-            } else if (e.target.id == 'btnComunidade' || e.target.id == 'contentComunidade' || e.target.id == 'imgComunidade' || e.target.id == 'h3Comunidade') {
+            } else if (e.target.id == 'btnComunidade' || e.target.id == 'contentComunidade' || e.target.id == 'imgComunidade' || e.target.id == 'pComunidade') {
                 //nucleo Comunidade
                 execComunidade();
-
-            }
-            if (e.target.id == 'closeManchetes') {
-                e.target.parentNode.style.display = 'none';
-                document.getElementById('container').style.display = 'flex';
-                document.getElementById('tituloRobert').style.display = 'block';
             }
         });
-        var handler = {
-            modelScrapy: (title) => {
-                elChild = document.createElement('ul');
-                elChild.innerHTML = `<li>${title}</li>`;
-                document.getElementById('divResponse').appendChild(elChild);
-            },
-            getScrapy: () => {
-                request('https://brasil.elpais.com/').then(response => {
-                    for (let i = 0; i < 10; i++) {
-                        handler.modelScrapy(response[i].title);
-                    }
-                });
-            }
-
-        }
     </script>
 </body>
 

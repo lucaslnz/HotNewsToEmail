@@ -11,8 +11,8 @@ let mainWindow
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 400,
+        height: 300,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true
@@ -33,7 +33,8 @@ function createWindow() {
         mainWindow = null
     })
 
-    mainWindow.maximize()
+    // mainWindow.maximize()
+    mainWindow.setMenuBarVisibility(false)
 }
 
 // This method will be called when Electron has finished
