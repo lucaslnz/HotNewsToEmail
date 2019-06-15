@@ -13,11 +13,11 @@ const getNoticias = async() =>{
 
 const enviaNoticias = async() => {
     let li = document.getElementsByTagName('li');
-    var val = 'Manchetes: ';
+    var val = 'Manchetes:\n';
     for (let i in li) {
         let _li = li[i].textContent;
         if (_li != 'undefined' && _li != undefined)
-            val += _li + '; ';
+            val += _li + '\n';
     }
     console.log(val);
     let exPath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
@@ -45,8 +45,8 @@ const enviaNoticias = async() => {
         // await page.waitFor(4000);
         await page.type('#cke_1_contents', val);
         await page.waitFor(400);
-        await page.waitForSelector('.button-send');
-        await page.click('.button-send');
+        // await page.waitForSelector('.button-send');
+        // await page.click('.button-send');
         // await page.waitFor(4000);
         await page.waitForSelector('div.modal.hide.b-compose.fade',{hidden:true});
         await browser.close();
