@@ -27,8 +27,8 @@ const enviaNoticias = async() => {
     });
     const page = await browser.newPage();
     await page.goto('https://webmail.backsite.com.br/');
-    await page.type('#RainLoopEmail', 'lucassantos@backsite.com.br');
-    await page.type('#RainLoopPassword', 'BacksiTe@026');
+    await page.type('#RainLoopEmail', 'YOUREMAIL');
+    await page.type('#RainLoopPassword', 'YOURPASSWORD');
     await page.click('button.btn');
     await page.waitForNavigation({
         waitUntil: 'load'
@@ -36,7 +36,7 @@ const enviaNoticias = async() => {
     try {
         await page.waitForSelector('.buttonCompose');
         await page.click('.buttonCompose');
-        await page.type('.ui-autocomplete-input', 'emersonrios@gmail.com');
+        await page.type('.ui-autocomplete-input', 'DESTINYEMAIL');
         const data = new Date();
         await page.type('[data-bind="textInput: subject, hasFocus: subject.focused"]', 'Noticias do El País '+ ("0" + data.getDate()).substr(-2) + "/" + ("0" + (data.getMonth() + 1)).substr(-2) + "/" + data.getFullYear());
         await page.waitFor(4000);
