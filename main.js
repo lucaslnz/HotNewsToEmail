@@ -16,7 +16,7 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true
-        }
+        },
     })
 
     // and load the index.html of the app.
@@ -32,6 +32,8 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null
     })
+
+    mainWindow.maximize()
 }
 
 // This method will be called when Electron has finished

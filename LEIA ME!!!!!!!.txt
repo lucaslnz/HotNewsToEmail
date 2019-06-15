@@ -1,0 +1,3 @@
+Antes de qualquer coisa, assim que abrir pela primeira vez este projeto execute o comando "npm i --save" para baixar todas as dependências, e só depois então poderá executar o "npm start".
+
+Depois, caso queira compilar o projeto em um .exe, execute "electron-packager . BsRobert --overwrite --asar=true --platform=win32 --arch=ia32"
