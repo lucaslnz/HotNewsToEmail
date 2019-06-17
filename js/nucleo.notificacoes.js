@@ -1,3 +1,7 @@
 const execNotificacoes = async() =>{
-	shell.openItem('python C:/Users/emers/Desktop/BSRoboto/Facebook/index.py');
+	pyShell('python "PYTHON FILE"', function (error, stdout, stderr) {
+	      if (error !== null) {
+	        console.log('exec error: ' + error);
+	      }
+	});
 }

@@ -101,13 +101,12 @@
     <script src="js/nucleo.comunidade.js"></script>
     <script>
         const electron = require('electron');
-        const {
-            shell
-        } = require('electron');
+        const {shell} = require('electron');
         const path = require('path')
         const axios = require('axios');
         const cheerio = require('cheerio');
         const puppeteer = require('puppeteer');
+        var pyShell = require('child_process').exec;
 
         let getData = html => {
                 data = [];
